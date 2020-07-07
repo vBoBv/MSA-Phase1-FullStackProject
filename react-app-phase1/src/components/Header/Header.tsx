@@ -7,7 +7,9 @@ import {
 	TextField,
 	Button
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 import FilterListIcon from '@material-ui/icons/FilterList';
 import './Header.css';
@@ -28,34 +30,53 @@ const ElevationScroll = ({ children }: ElevationScrollProps): JSX.Element => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	headerItem: {
-		margin: 'auto'
+	logo: {
+		margin: 'auto',
+		[theme.breakpoints.down('xs')]: {
+			marginLeft: '1rem'
+		}
+	},
+	searchBar: {
+		margin: 'auto',
+		[theme.breakpoints.down('xs')]: {
+			margin: 'auto'
+		}
+	},
+	filter: {
+		margin: 'auto',
+		[theme.breakpoints.down('xs')]: {
+			marginRight: '1rem'
+		}
 	}
 }));
 
 const Header = () => {
 	const classes = useStyles();
+	const theme = useTheme();
+	const isScreenSmall = useMediaQuery(theme.breakpoints.down('xs'));
+
+	const searchBar = (
+		<TextField
+			id='standard-secondary'
+			label='Restaurant Name'
+			color='secondary'
+			className={classes.searchBar}
+		/>
+	);
+
 	return (
 		<React.Fragment>
 			<ElevationScroll>
 				<AppBar>
 					<Toolbar disableGutters>
-						<Typography className={classes.headerItem}>foodJunkie</Typography>
-						<TextField
-							id='standard-secondary'
-							label='Restaurant Name'
-							color='secondary'
-							className={classes.headerItem}
-						/>
-						<Button
-							startIcon={<FilterListIcon />}
-							className={classes.headerItem}>
+						<Typography className={classes.logo}>foodJunkie</Typography>
+						{isScreenSmall ? null : searchBar}
+						<Button startIcon={<FilterListIcon />} className={classes.filter}>
 							Filter
 						</Button>
 					</Toolbar>
 				</AppBar>
 			</ElevationScroll>
-			<Toolbar />
 		</React.Fragment>
 	);
 };
