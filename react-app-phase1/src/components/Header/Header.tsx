@@ -68,23 +68,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-const Header = () => {
+const Header = (): JSX.Element => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isScreenSmall = useMediaQuery(theme.breakpoints.down('xs'));
 
-	const [age, setAge] = React.useState<string | number>('');
+	const [city, setCity] = React.useState<string>('');
 	const [open, setOpen] = React.useState<boolean>(false);
 
-	const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-		setAge(event.target.value as number);
+	const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
+		setCity(event.target.value as string);
 	};
 
-	const handleClose = () => {
+	const handleClose = (): void => {
 		setOpen(false);
 	};
 
-	const handleOpen = () => {
+	const handleOpen = (): void => {
 		setOpen(true);
 	};
 
@@ -119,21 +119,13 @@ const Header = () => {
 									className={classes.dialogContentContainer}
 									spacing={2}
 									justify='center'>
-									<Grid item>
-										{isScreenSmall ? (
-											<TextField
-												id='standard-secondary'
-												label='Restaurant Name'
-												color='secondary'
-											/>
-										) : null}
-									</Grid>
+									<Grid item>{isScreenSmall ? searchBar : null}</Grid>
 									<Grid item style={{ margin: 'left' }}>
 										<Grid container alignItems='center'>
 											<LocationOnIcon />
 											<FormControl className={classes.formControl}>
 												<Select
-													value={age}
+													value={city}
 													onChange={handleChange}
 													displayEmpty
 													className={classes.selectEmpty}
