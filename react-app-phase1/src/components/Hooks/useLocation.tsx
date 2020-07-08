@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import zomato from '../api/zomato';
 import { LocationProps } from './Interfaces/interfaces';
 
-const useLocation = (defaultLocation: string): [LocationProps, (input: string) => void] => {
+const useLocation = (defaultLocation: string | null): [LocationProps, (input: string) => void] => {
 	const [location, setLocation] = useState<LocationProps>({} as LocationProps);
 
 	useEffect(() => {
 		searchLocation(defaultLocation);
 	}, [defaultLocation]);
 
-	const searchLocation = async (cityName: string) => {
+	const searchLocation = async (cityName: string | null) => {
 		const { data } = await zomato.get('/locations', {
 			params: {
 				query: cityName

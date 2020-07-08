@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	AppBar,
 	Toolbar,
@@ -21,13 +21,14 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { UserInput } from '../../Common/Interfaces';
 
 interface ElevationScrollProps {
 	children: React.ReactElement;
 }
 
 interface HeaderProps {
-	onSearchSubmit: Function;
+	SetUserInput: (input: UserInput) => void;
 }
 
 const ElevationScroll = ({ children }: ElevationScrollProps): JSX.Element => {
@@ -79,26 +80,42 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-const Header = (): JSX.Element => {
-	const [restaurant, setRestaurant] = React.useState<string | null>('');
-	const [city, setCity] = React.useState<string>('');
-	const [open, setOpen] = React.useState<boolean>(false);
+const Header = ({ SetUserInput }: HeaderProps): JSX.Element => {
+	const [restaurant, setRestaurant] = useState<string | null>('');
+	const [debouncedRestaurant, setDebouncedRestaurant] = useState<string | null>('');
+	const [city, setCity] = useState<string>('');
+	const [open, setOpen] = useState<boolean>(false);
 
 	const classes = useStyles();
 	const theme = useTheme();
 	const isScreenSmall = useMediaQuery(theme.breakpoints.down('xs'));
 
-	const handleTextChange = (
-		event: React.ChangeEvent<{ value: unknown }>
-	): void => {
-		console.log(restaurant);
+	useEffect(() => {
+		const timerId = setTimeout(() => {
+			setDebouncedRestaurant(restaurant);
+		}, 1000);
+
+		return () => {
+			clearTimeout(timerId);
+		};
+	}, [restaurant]);
+
+	useEffect(() => {
+		const handleSubmit = () => {
+			let UserInput: UserInput = {
+				SearchQuery: restaurant,
+				SelectQuery: city
+			};
+			SetUserInput(UserInput);
+		};
+		handleSubmit();
+	}, [debouncedRestaurant, city]);
+
+	const handleTextChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
 		setRestaurant(event.target.value as string);
 	};
 
-	const handleSelectChange = (
-		event: React.ChangeEvent<{ value: unknown }>
-	): void => {
-		console.log(city);
+	const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
 		setCity(event.target.value as string);
 	};
 
@@ -127,21 +144,14 @@ const Header = (): JSX.Element => {
 					<Toolbar disableGutters>
 						<Typography className={classes.logo}>foodJunkie</Typography>
 						{isScreenSmall ? null : searchBar}
-						<Button
-							startIcon={<FilterListIcon />}
-							className={classes.filter}
-							onClick={handleOpen}>
+						<Button startIcon={<FilterListIcon />} className={classes.filter} onClick={handleOpen}>
 							Filter
 						</Button>
 						<Dialog open={open} onClose={handleClose}>
 							<DialogTitle>Search Filter</DialogTitle>
 							<Divider />
 							<DialogContent>
-								<Grid
-									container
-									className={classes.dialogContentContainer}
-									spacing={2}
-									justify='center'>
+								<Grid container className={classes.dialogContentContainer} spacing={2} justify='center'>
 									<Grid item>{isScreenSmall ? searchBar : null}</Grid>
 									<Grid item style={{ margin: 'left' }}>
 										<Grid container alignItems='center'>

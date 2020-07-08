@@ -5,7 +5,7 @@ import { RestaurantProps } from './Interfaces/interfaces';
 
 const useRestaurant = (
 	defaultRestaurantName: string | null,
-	defaultLocationName: string
+	defaultLocationName: string | null
 ): [RestaurantProps[], (input: string) => void] => {
 	const [restaurant, setRestaurant] = useState<RestaurantProps[]>([]);
 	const [location] = useLocation(defaultLocationName);
