@@ -65,6 +65,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 	formControl: {
 		margin: theme.spacing(1),
 		minWidth: 120
+	},
+	headerMargin: {
+		...theme.mixins.toolbar,
+		marginBottom: '1em'
+		// [theme.breakpoints.down('md')]: {
+		// 	marginBottom: '0.5em'
+		// }
 	}
 }));
 
@@ -146,6 +153,7 @@ const Header = (): JSX.Element => {
 					</Toolbar>
 				</AppBar>
 			</ElevationScroll>
+			<div className={classes.headerMargin} />
 		</React.Fragment>
 	);
 };

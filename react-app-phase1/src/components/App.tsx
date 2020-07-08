@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import Header from './Header/Header';
 import theme from './Theme/Theme';
-import zomato from './api/zomato';
+import LandingPage from './LandingPage/LandingPage';
+import useRestaurant from './Hooks/useRestaurant';
 
 const App = () => {
-	const [term, setTerm] = useState('Auckland');
+	// useRestaurant('', 'Auckland');
+	//const [location, searchLocation] = useLocation('Auckland');
+	//console.log(location);
 
-	useEffect(() => {
-		const search = async () => {
-			const { data } = await zomato.get('/locations', {
-				params: {
-					query: term
-				}
-			});
-			console.log(data);
-		};
-		search();
-	}, [term]);
+	// useRestaurant('fast horse', 'Auckland');
+
+	const [restaurant] = useRestaurant('fast horse', 'Auckland');
+
+	console.log(restaurant);
 
 	return (
 		<ThemeProvider theme={theme}>
 			<Header />
+			<LandingPage />
 		</ThemeProvider>
 	);
 };
