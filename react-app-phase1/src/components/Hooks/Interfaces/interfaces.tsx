@@ -6,3 +6,7 @@ export interface LocationProps {
 	country_id?: string;
 	country_name?: string;
 }
+
+export interface RestaurantProps {
+	restaurant: object;
+}

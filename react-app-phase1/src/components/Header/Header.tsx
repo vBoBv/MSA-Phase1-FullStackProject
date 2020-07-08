@@ -26,6 +26,10 @@ interface ElevationScrollProps {
 	children: React.ReactElement;
 }
 
+interface HeaderProps {
+	onSearchSubmit: Function;
+}
+
 const ElevationScroll = ({ children }: ElevationScrollProps): JSX.Element => {
 	const trigger = useScrollTrigger({
 		disableHysteresis: true,
@@ -76,14 +80,25 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const Header = (): JSX.Element => {
+	const [restaurant, setRestaurant] = React.useState<string | null>('');
+	const [city, setCity] = React.useState<string>('');
+	const [open, setOpen] = React.useState<boolean>(false);
+
 	const classes = useStyles();
 	const theme = useTheme();
 	const isScreenSmall = useMediaQuery(theme.breakpoints.down('xs'));
 
-	const [city, setCity] = React.useState<string>('');
-	const [open, setOpen] = React.useState<boolean>(false);
+	const handleTextChange = (
+		event: React.ChangeEvent<{ value: unknown }>
+	): void => {
+		console.log(restaurant);
+		setRestaurant(event.target.value as string);
+	};
 
-	const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
+	const handleSelectChange = (
+		event: React.ChangeEvent<{ value: unknown }>
+	): void => {
+		console.log(city);
 		setCity(event.target.value as string);
 	};
 
@@ -101,6 +116,7 @@ const Header = (): JSX.Element => {
 			label='Restaurant Name'
 			color='secondary'
 			className={classes.searchBar}
+			onChange={handleTextChange}
 		/>
 	);
 
@@ -133,7 +149,7 @@ const Header = (): JSX.Element => {
 											<FormControl className={classes.formControl}>
 												<Select
 													value={city}
-													onChange={handleChange}
+													onChange={handleSelectChange}
 													displayEmpty
 													className={classes.selectEmpty}
 													inputProps={{ 'aria-label': 'Without label' }}>

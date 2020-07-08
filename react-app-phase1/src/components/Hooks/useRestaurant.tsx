@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import useLocation from './useLocation';
 import zomato from '../api/zomato';
+import { RestaurantProps } from './Interfaces/interfaces';
 
 const useRestaurant = (
 	defaultRestaurantName: string | null,
 	defaultLocationName: string
-) => {
-	const [restaurant, setRestaurant] = useState([]);
+): [RestaurantProps[], (input: string) => void] => {
+	const [restaurant, setRestaurant] = useState<RestaurantProps[]>([]);
 	const [location] = useLocation(defaultLocationName);
 
 	const searchRestaurant = useCallback(
