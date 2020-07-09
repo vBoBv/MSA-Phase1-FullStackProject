@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import useLocation from './useLocation';
 import zomato from '../api/zomato';
 import { RestaurantProps } from './Interfaces/interfaces';
+import _ from 'lodash';
 
 const useRestaurant = (
 	defaultRestaurantName: string | null,
@@ -12,17 +13,19 @@ const useRestaurant = (
 
 	const searchRestaurant = useCallback(
 		async (restaurantName: string | null) => {
-			const { data } = await zomato.get('/search', {
-				params: {
-					entity_id: location.entity_id,
-					entity_type: location.entity_type,
-					order: 'asc',
-					q: restaurantName
-				}
-			});
-			setRestaurant(data.restaurants);
+			if (!_.isEmpty(location)) {
+				const { data } = await zomato.get('/search', {
+					params: {
+						entity_id: location.entity_id,
+						entity_type: location.entity_type,
+						order: 'asc',
+						q: restaurantName
+					}
+				});
+				setRestaurant(data.restaurants);
+			}
 		},
-		[location.entity_id, location.entity_type]
+		[location]
 	);
 
 	useEffect(() => {
