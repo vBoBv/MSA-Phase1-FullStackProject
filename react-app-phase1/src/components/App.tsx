@@ -19,8 +19,8 @@ const App = () => {
 	// console.log(UserInput.SearchQuery);
 	// console.log(UserInput.SelectQuery);
 
-	const [restaurant] = useRestaurant(UserInput.SearchQuery, UserInput.SelectQuery);
-	console.log(restaurant);
+	// const [restaurant] = useRestaurant(UserInput.SearchQuery, UserInput.SelectQuery);
+	// console.log(restaurant);
 
 	return (
 		<ThemeProvider theme={theme}>
