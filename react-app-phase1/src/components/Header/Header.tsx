@@ -16,8 +16,7 @@ import {
 	Theme,
 	Divider
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
