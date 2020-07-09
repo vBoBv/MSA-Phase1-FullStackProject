@@ -9,18 +9,24 @@ import {
 	CardContent,
 	CardActions,
 	Collapse,
-	Avatar,
 	IconButton,
 	Typography
 } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
-import { Favorite, Share, ExpandMore, MoreVert } from '@material-ui/icons';
+import { Share as ShareIcon, ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import 'react-multi-carousel/lib/styles.css';
+import { inherits } from 'util';
+
+interface MultiCarouselProps {
+	label: string;
+	data: any[];
+}
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
-			maxWidth: 345
+			minWidth: 370
+			// maxWidth: 'inherit'
 		},
 		media: {
 			height: 0,
@@ -38,13 +44,24 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		avatar: {
 			backgroundColor: red[500]
+		},
+		carouselContainer: {
+			width: '80%',
+			margin: 'auto'
+		},
+		carouselItem: {
+			display: 'flex',
+			justifyContent: 'center'
+			// flex: '0 0 100%',
+			// margin: 'auto'
 		}
 	})
 );
 
-const MutliCarousel = () => {
+const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
+	console.log(data);
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
@@ -70,79 +87,53 @@ const MutliCarousel = () => {
 		}
 	};
 
-	return (
-		<div style={{ width: '80%', margin: 'auto' }}>
-			<Typography variant='h4' gutterBottom>
-				Cusines
-			</Typography>
-			<Carousel responsive={responsive}>
-				<div style={{ backgroundColor: 'red', display: 'flex', justifyContent: 'center' }}>
-					<Card className={classes.root}>
-						<CardHeader
-							avatar={
-								<Avatar aria-label='recipe' className={classes.avatar}>
-									R
-								</Avatar>
-							}
-							action={
-								<IconButton aria-label='settings'>
-									<MoreVert />
-								</IconButton>
-							}
-							title='Shrimp and Chorizo Paella'
-							subheader='September 14, 2016'
-						/>
-						<CardMedia className={classes.media} image='/static/images/cards/paella.jpg' title='Paella dish' />
+	const renderCard = data.map((item) => {
+		return (
+			<div key={item.restaurant.name} className={classes.carouselItem}>
+				{/* <div key={item.restaurant.name}> */}
+				<Card className={classes.root}>
+					<CardHeader
+						title={item.restaurant.name}
+						subheader={`Rating: ${item.restaurant.user_rating.aggregate_rating}`}
+					/>
+					<CardMedia className={classes.media} image={item.restaurant.featured_image} title={item.restaurant.name} />
+					<CardActions disableSpacing>
+						<IconButton aria-label='share'>
+							<ShareIcon />
+						</IconButton>
+						<IconButton
+							className={clsx(classes.expand, {
+								[classes.expandOpen]: expanded
+							})}
+							onClick={handleExpandClick}
+							aria-expanded={expanded}
+							aria-label='show more'>
+							<ExpandMoreIcon />
+						</IconButton>
+					</CardActions>
+					<Collapse in={expanded} timeout='auto' unmountOnExit>
 						<CardContent>
-							<Typography variant='body2' color='textSecondary' component='p'>
-								This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1
-								cup of frozen peas along with the mussels, if you like.
+							<Typography paragraph>
+								Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook without stirring,
+								until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp
+								and mussels, tucking them down into the rice, and cook again without stirring, until mussels have opened
+								and rice is just tender, 5 to 7 minutes more. (Discard any mussels that don’t open.)
 							</Typography>
+							<Typography>Set aside off of the heat to let rest for 10 minutes, and then serve.</Typography>
 						</CardContent>
-						<CardActions disableSpacing>
-							<IconButton aria-label='add to favorites'>
-								<Favorite />
-							</IconButton>
-							<IconButton aria-label='share'>
-								<Share />
-							</IconButton>
-							<IconButton
-								className={clsx(classes.expand, {
-									[classes.expandOpen]: expanded
-								})}
-								onClick={handleExpandClick}
-								aria-expanded={expanded}
-								aria-label='show more'>
-								<ExpandMore />
-							</IconButton>
-						</CardActions>
-						<Collapse in={expanded} timeout='auto' unmountOnExit>
-							<CardContent>
-								<Typography paragraph>Method:</Typography>
-								<Typography paragraph>
-									Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10 minutes.
-								</Typography>
-								<Typography paragraph>
-									Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken,
-									shrimp and chorizo, and cook, stirring occasionally until lightly browned, 6 to 8 minutes. Transfer
-									shrimp to a large plate and set aside, leaving chicken and chorizo in the pan. Add pimentón, bay
-									leaves, garlic, tomatoes, onion, salt and pepper, and cook, stirring often until thickened and
-									fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-								</Typography>
-								<Typography paragraph>
-									Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook without
-									stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
-									reserved shrimp and mussels, tucking them down into the rice, and cook again without stirring, until
-									mussels have opened and rice is just tender, 5 to 7 minutes more. (Discard any mussels that don’t
-									open.)
-								</Typography>
-								<Typography>Set aside off of the heat to let rest for 10 minutes, and then serve.</Typography>
-							</CardContent>
-						</Collapse>
-					</Card>
-				</div>
-				;
-			</Carousel>
+					</Collapse>
+				</Card>
+			</div>
+		);
+	});
+
+	return (
+		<div className={classes.carouselContainer}>
+			{/* <div> */}
+			<Typography variant='h4' gutterBottom>
+				{label}
+			</Typography>
+			<Carousel responsive={responsive}>{renderCard}</Carousel>
 		</div>
 	);
 };
