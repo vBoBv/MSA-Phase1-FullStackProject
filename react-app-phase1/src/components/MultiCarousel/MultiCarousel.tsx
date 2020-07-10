@@ -15,7 +15,8 @@ interface MultiCarouselProps {
 const useStyles = makeStyles((theme: Theme) => ({
 	carouselContainer: {
 		width: '80%',
-		margin: 'auto'
+		margin: 'auto',
+		marginBottom: '1rem'
 	},
 	carouselItem: {
 		display: 'flex',
@@ -27,6 +28,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	iconContainer: {
 		marginRight: '0.5rem'
+	},
+	cardItem: {
+		padding: '0 20px 0 20px'
 	}
 }));
 
@@ -104,7 +108,9 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 			<Typography variant='h4' gutterBottom>
 				{label}
 			</Typography>
-			<Carousel responsive={responsive}>{renderCard}</Carousel>
+			<Carousel responsive={responsive} itemClass={classes.cardItem}>
+				{renderCard}
+			</Carousel>
 		</div>
 	);
 };

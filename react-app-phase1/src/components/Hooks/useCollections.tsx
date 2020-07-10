@@ -4,7 +4,10 @@ import _ from 'lodash';
 import { LocationProps } from './Interfaces/interfaces';
 
 interface CollectionProps {
-	collections: object;
+	collection: {
+		collection_id: string;
+		title: string;
+	};
 }
 
 const useCollections = (locationData: LocationProps): [CollectionProps[], (input: LocationProps) => void] => {
