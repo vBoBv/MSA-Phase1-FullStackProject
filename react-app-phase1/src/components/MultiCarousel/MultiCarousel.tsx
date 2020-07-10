@@ -13,24 +13,41 @@ interface MultiCarouselProps {
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
+	heading: {
+		[theme.breakpoints.down('md')]: {
+			fontSize: '2rem'
+		},
+		[theme.breakpoints.down('xs')]: {
+			fontSize: '1.5rem'
+		}
+	},
 	carouselContainer: {
-		width: '80%',
+		width: '85%',
 		margin: 'auto',
 		marginBottom: '1rem'
 	},
 	carouselItem: {
 		display: 'flex',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		padding: '1rem'
 	},
-	addressContainer: {
+	infoContainer: {
 		display: 'flex',
 		alignItems: 'center'
 	},
 	iconContainer: {
 		marginRight: '0.5rem'
 	},
-	cardItem: {
-		padding: '0 20px 0 20px'
+	cardContainer: {
+		maxWidth: 400
+	},
+	restaurantName: {
+		[theme.breakpoints.down('md')]: {
+			fontSize: '1.5rem'
+		},
+		[theme.breakpoints.down('xs')]: {
+			fontSize: '1.2rem'
+		}
 	}
 }));
 
@@ -41,7 +58,7 @@ const responsive = {
 	},
 	desktop: {
 		breakpoint: { max: 3000, min: 1024 },
-		items: 3
+		items: 4
 	},
 	tablet: {
 		breakpoint: { max: 1024, min: 464 },
@@ -60,17 +77,17 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 	const renderCard = data.map((item) => {
 		return (
 			<div key={item.restaurant.name} className={classes.carouselItem}>
-				<Card>
+				<Card className={classes.cardContainer}>
 					<CardActionArea>
 						<CardMedia
 							component='img'
+							height='180'
 							alt={item.restaurant.name}
-							height='140'
 							image={item.restaurant.featured_image}
 							title={item.restaurant.name}
 						/>
 						<CardContent>
-							<Typography gutterBottom variant='h5' component='h2'>
+							<Typography gutterBottom variant='h5' component='h2' className={classes.restaurantName}>
 								{item.restaurant.name}
 							</Typography>
 							<Typography
@@ -78,7 +95,7 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 								variant='body2'
 								color='textSecondary'
 								component='p'
-								className={classes.addressContainer}>
+								className={classes.infoContainer}>
 								<PinDropIcon className={classes.iconContainer} />
 								{item.restaurant.location.locality_verbose}
 							</Typography>
@@ -87,7 +104,7 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 								variant='body2'
 								color='textSecondary'
 								component='p'
-								className={classes.addressContainer}>
+								className={classes.infoContainer}>
 								<StarsIcon className={classes.iconContainer} />
 								{item.restaurant.user_rating.aggregate_rating}
 							</Typography>
@@ -105,12 +122,10 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 
 	return (
 		<div className={classes.carouselContainer}>
-			<Typography variant='h4' gutterBottom>
+			<Typography variant='h4' gutterBottom className={classes.heading}>
 				{label}
 			</Typography>
-			<Carousel responsive={responsive} itemClass={classes.cardItem}>
-				{renderCard}
-			</Carousel>
+			<Carousel responsive={responsive}>{renderCard}</Carousel>
 		</div>
 	);
 };
