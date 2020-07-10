@@ -3,8 +3,12 @@ import { ThemeProvider } from '@material-ui/styles';
 import Header from './Header/Header';
 import theme from './Theme/Theme';
 import LandingPage from './LandingPage/LandingPage';
-import { UserInput } from '../Common/Interfaces';
-import useRestaurant from './Hooks/useRestaurant';
+// import useRestaurant from './Hooks/useRestaurant';
+
+interface UserInput {
+	SearchQuery: string | null;
+	SelectQuery: string | null;
+}
 
 const App = () => {
 	const [UserInput, setUserInput] = useState<UserInput>({
@@ -22,7 +26,8 @@ const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
 			<Header SetUserInput={(input: UserInput) => SetUserInput(input)} />
-			<LandingPage SearchQuery={UserInput.SearchQuery} SelectQuery={UserInput.SelectQuery} />
+			{/* <LandingPage SearchQuery={UserInput.SearchQuery} SelectQuery={UserInput.SelectQuery} /> */}
+			<LandingPage />
 		</ThemeProvider>
 	);
 };
