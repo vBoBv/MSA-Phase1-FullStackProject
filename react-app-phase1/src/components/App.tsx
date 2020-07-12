@@ -28,7 +28,7 @@ const App = () => {
 		<ThemeProvider theme={theme}>
 			<Header SetUserInput={(input: UserInput) => SetUserInput(input)} />
 			{/* <LandingPage SearchQuery={UserInput.SearchQuery} SelectQuery={UserInput.SelectQuery} /> */}
-			<LandingPage />
+			{/* <LandingPage /> */}
 			<RestaurantList />
 		</ThemeProvider>
 	);

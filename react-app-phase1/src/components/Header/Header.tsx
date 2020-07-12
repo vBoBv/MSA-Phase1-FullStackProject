@@ -87,7 +87,7 @@ const Header = ({ SetUserInput }: HeaderProps): JSX.Element => {
 
 	const classes = useStyles();
 	const theme = useTheme();
-	const isScreenSmall = useMediaQuery(theme.breakpoints.down('xs'));
+	const isScreenXSmall = useMediaQuery(theme.breakpoints.down('xs'));
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
@@ -142,7 +142,7 @@ const Header = ({ SetUserInput }: HeaderProps): JSX.Element => {
 				<AppBar>
 					<Toolbar disableGutters>
 						<Typography className={classes.logo}>foodJunkie</Typography>
-						{isScreenSmall ? null : searchBar}
+						{isScreenXSmall ? null : searchBar}
 						<Button startIcon={<FilterListIcon />} className={classes.filter} onClick={handleOpen}>
 							Filter
 						</Button>
@@ -151,7 +151,7 @@ const Header = ({ SetUserInput }: HeaderProps): JSX.Element => {
 							<Divider />
 							<DialogContent>
 								<Grid container className={classes.dialogContentContainer} spacing={2} justify='center'>
-									<Grid item>{isScreenSmall ? searchBar : null}</Grid>
+									<Grid item>{isScreenXSmall ? searchBar : null}</Grid>
 									<Grid item style={{ margin: 'left' }}>
 										<Grid container alignItems='center'>
 											<LocationOnIcon />
