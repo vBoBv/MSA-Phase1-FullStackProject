@@ -1,113 +1,82 @@
 import React from 'react';
-import { Theme, makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, Typography, useMediaQuery, Divider } from '@material-ui/core';
-import PinDropIcon from '@material-ui/icons/PinDrop';
-import StarsIcon from '@material-ui/icons/Stars';
-import PhoneIcon from '@material-ui/icons/Phone';
+import { Theme, makeStyles } from '@material-ui/core/styles';
+import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
-	gridContainer: {
-		alignItems: 'start',
-		width: '60%',
+	cardContainer: {
+		display: 'flex',
+		width: '65%',
 		margin: 'auto',
-		backgroundColor: 'silver'
-	},
-	gridItem: {
-		height: '14rem',
-		[theme.breakpoints.down('md')]: {
-			height: '10rem'
-		},
+		marginBottom: '1rem',
 		[theme.breakpoints.down('sm')]: {
-			// width: 'inherit'
+			width: '75%'
 		},
 		[theme.breakpoints.down('xs')]: {
-			// width: 'inherit'
+			width: '85%',
+			flexDirection: 'column'
 		}
 	},
-	imgContainer: {
-		height: 'inherit'
-	},
-	infoContainer: {
+	cardDetails: {
 		display: 'flex',
-		alignItems: 'center'
+		flexDirection: 'column'
 	},
-	iconContainer: {
-		marginRight: '0.5rem'
+	cardContent: {
+		flex: '1 0 auto'
 	},
-	gridInfo: {
-		marginLeft: '1rem',
-		width: 'inherit',
+	imgCover: {
+		width: 200,
+		height: 190,
 		[theme.breakpoints.down('sm')]: {
-			marginLeft: '0rem',
-
-			width: '10rem'
+			width: 180,
+			height: 150
 		},
 		[theme.breakpoints.down('xs')]: {
-			marginLeft: '0rem',
-
-			width: '10rem'
+			width: '100%',
+			height: 170
 		}
 	}
 }));
 
 const RestaurantList = () => {
 	const classes = useStyles();
-	const theme = useTheme();
-	const isScreenSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
 	return (
-		<Grid container direction='row' className={classes.gridContainer}>
-			<Grid item className={classes.gridItem}>
-				<img
-					alt='custom software icon'
-					src='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
-					className={classes.imgContainer}
+		<React.Fragment>
+			<Card className={classes.cardContainer}>
+				<CardMedia
+					className={classes.imgCover}
+					image='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
+					title='Live from space album cover'
 				/>
-			</Grid>
-			<Grid item className={classes.gridInfo}>
-				<Typography variant='h5' gutterBottom component='h2'>
-					Fast Horse
-				</Typography>
-				<Typography gutterBottom variant='body2' color='textSecondary' component='p' className={classes.infoContainer}>
-					<StarsIcon className={classes.iconContainer} />
-					4.5
-				</Typography>
-				<Typography gutterBottom variant='body2' color='textSecondary' component='p' className={classes.infoContainer}>
-					<PinDropIcon className={classes.iconContainer} />
-					Federal, Auckland
-				</Typography>
-				<Typography gutterBottom variant='body2' color='textSecondary' component='p' className={classes.infoContainer}>
-					<PhoneIcon className={classes.iconContainer} />
-					021 3432456
-				</Typography>
-			</Grid>
-			<Divider />
-			<Grid item className={classes.gridItem}>
-				<img
-					alt='custom software icon'
-					src='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
-					className={classes.imgContainer}
+				<div className={classes.cardDetails}>
+					<CardContent className={classes.cardContent}>
+						<Typography component='h5' variant='h5'>
+							Live From Space
+						</Typography>
+						<Typography variant='subtitle1' color='textSecondary'>
+							Mac Miller
+						</Typography>
+					</CardContent>
+				</div>
+			</Card>
+			<Card className={classes.cardContainer}>
+				<CardMedia
+					className={classes.imgCover}
+					image='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
+					title='Live from space album cover'
 				/>
-			</Grid>
-			<Grid item className={classes.gridInfo}>
-				<Typography variant='h5' gutterBottom component='h2'>
-					Fast Horse
-				</Typography>
-				<Typography gutterBottom variant='body2' color='textSecondary' component='p' className={classes.infoContainer}>
-					<StarsIcon className={classes.iconContainer} />
-					4.5
-				</Typography>
-				<Typography gutterBottom variant='body2' color='textSecondary' component='p' className={classes.infoContainer}>
-					<PinDropIcon className={classes.iconContainer} />
-					Federal, Auckland
-				</Typography>
-				<Typography gutterBottom variant='body2' color='textSecondary' component='p' className={classes.infoContainer}>
-					<PhoneIcon className={classes.iconContainer} />
-					021 3432456
-				</Typography>
-			</Grid>
-			<Divider />
-		</Grid>
+				<div className={classes.cardDetails}>
+					<CardContent className={classes.cardContent}>
+						<Typography component='h5' variant='h5'>
+							Live From Space
+						</Typography>
+						<Typography variant='subtitle1' color='textSecondary'>
+							Mac Miller
+						</Typography>
+					</CardContent>
+				</div>
+			</Card>
+		</React.Fragment>
 	);
 };
 
