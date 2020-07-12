@@ -3,6 +3,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Header from './Header/Header';
 import theme from './Theme/Theme';
 import LandingPage from './LandingPage/LandingPage';
+import RestaurantList from './RestaurantList/RestaurantList';
 // import useRestaurant from './Hooks/useRestaurant';
 
 interface UserInput {
@@ -28,6 +29,7 @@ const App = () => {
 			<Header SetUserInput={(input: UserInput) => SetUserInput(input)} />
 			{/* <LandingPage SearchQuery={UserInput.SearchQuery} SelectQuery={UserInput.SelectQuery} /> */}
 			<LandingPage />
+			<RestaurantList />
 		</ThemeProvider>
 	);
 };
