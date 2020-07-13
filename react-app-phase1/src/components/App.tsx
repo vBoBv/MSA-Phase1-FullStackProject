@@ -11,7 +11,7 @@ const App = () => {
 	const [location, setLocation] = useLocation('Auckland');
 	const [restaurant, searchRestaurant] = useRestaurant(null, location, null);
 
-	console.log(restaurant);
+	// console.log(restaurant);
 
 	return (
 		<ThemeProvider theme={theme}>
