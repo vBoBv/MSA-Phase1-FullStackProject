@@ -6,6 +6,7 @@ import PinDropIcon from '@material-ui/icons/PinDrop';
 import StarsIcon from '@material-ui/icons/Stars';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import 'react-multi-carousel/lib/styles.css';
+import comingSoonImage from '../../Img/comingSoon.png';
 
 interface MultiCarouselProps {
 	label: string;
@@ -83,7 +84,7 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 							component='img'
 							height='180'
 							alt={item.restaurant.name}
-							image={item.restaurant.featured_image}
+							image={item.restaurant.featured_image !== '' ? item.restaurant.featured_image : comingSoonImage}
 							title={item.restaurant.name}
 						/>
 						<CardContent>

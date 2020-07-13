@@ -21,33 +21,6 @@ const useRestaurant = (
 ] => {
 	const [restaurant, setRestaurant] = useState<RestaurantProps[]>([]);
 
-	// const searchRestaurant = async (
-	// 	restaurantName: string | null,
-	// 	location: LocationProps,
-	// 	collection: CollectionProps | null
-	// ) => {
-	// 	if (!_.isEmpty(location) && !_.isEmpty(collection) && collection !== null) {
-	// 		const { data } = await zomato.get('/search', {
-	// 			params: {
-	// 				entity_id: location.entity_id,
-	// 				entity_type: location.entity_type,
-	// 				q: restaurantName,
-	// 				collection_id: collection.collection.collection_id
-	// 			}
-	// 		});
-	// 		setRestaurant(data.restaurants);
-	// 	} else if (!_.isEmpty(location) && collection === null) {
-	// 		const { data } = await zomato.get('/search', {
-	// 			params: {
-	// 				entity_id: location.entity_id,
-	// 				entity_type: location.entity_type,
-	// 				q: restaurantName
-	// 			}
-	// 		});
-	// 		setRestaurant(data.restaurants);
-	// 	}
-	// };
-
 	const searchRestaurant = useCallback(
 		async (restaurantName: string | null, location: LocationProps, collection: CollectionProps | null) => {
 			if (!_.isEmpty(location) && !_.isEmpty(collection) && collection !== null) {
@@ -60,7 +33,7 @@ const useRestaurant = (
 					}
 				});
 				setRestaurant(data.restaurants);
-			} else if (!_.isEmpty(location) && collection === null) {
+			} else if (!_.isEmpty(location) && restaurantName !== null && collection === null) {
 				const { data } = await zomato.get('/search', {
 					params: {
 						entity_id: location.entity_id,
@@ -78,64 +51,7 @@ const useRestaurant = (
 		searchRestaurant(defaultRestaurantName, locationData, collectionData);
 	}, [defaultRestaurantName, locationData, collectionData, searchRestaurant]);
 
-	// async (
-	// 	restaurantName: string | null,
-	// 	location: LocationProps,
-	// 	collection: CollectionProps | null
-	// ) => {
-	// 	if (!_.isEmpty(location) && !_.isEmpty(collection) && collection !== null) {
-	// 		const { data } = await zomato.get('/search', {
-	// 			params: {
-	// 				entity_id: location.entity_id,
-	// 				entity_type: location.entity_type,
-	// 				q: restaurantName,
-	// 				collection_id: collection.collection.collection_id
-	// 			}
-	// 		});
-	// 		setRestaurant(data.restaurants);
-	// 	} else if (!_.isEmpty(location) && collection === null) {
-	// 		const { data } = await zomato.get('/search', {
-	// 			params: {
-	// 				entity_id: location.entity_id,
-	// 				entity_type: location.entity_type,
-	// 				q: restaurantName
-	// 			}
-	// 		});
-	// 		setRestaurant(data.restaurants);
-	// 	}
-
 	return [restaurant, searchRestaurant];
 };
-
-// const useRestaurant = (
-// 	defaultRestaurantName: string | null,
-// 	defaultLocationName: string | null
-// ): [RestaurantProps[], (input: string) => void] => {
-// 	const [restaurant, setRestaurant] = useState<RestaurantProps[]>([]);
-// 	const [location] = useLocation(defaultLocationName);
-
-// 	const searchRestaurant = useCallback(
-// 		async (restaurantName: string | null) => {
-// 			if (!_.isEmpty(location)) {
-// 				const { data } = await zomato.get('/search', {
-// 					params: {
-// 						entity_id: location.entity_id,
-// 						entity_type: location.entity_type,
-// 						order: 'asc',
-// 						q: restaurantName
-// 					}
-// 				});
-// 				setRestaurant(data.restaurants);
-// 			}
-// 		},
-// 		[location]
-// 	);
-
-// 	useEffect(() => {
-// 		searchRestaurant(defaultRestaurantName);
-// 	}, [defaultRestaurantName, location, searchRestaurant]);
-
-// 	return [restaurant, searchRestaurant];
-// };
 
 export default useRestaurant;
