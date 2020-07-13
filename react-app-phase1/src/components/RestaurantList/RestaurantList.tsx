@@ -41,42 +41,23 @@ const RestaurantList = () => {
 	const classes = useStyles();
 
 	return (
-		<React.Fragment>
-			<Card className={classes.cardContainer}>
-				<CardMedia
-					className={classes.imgCover}
-					image='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
-					title='Live from space album cover'
-				/>
-				<div className={classes.cardDetails}>
-					<CardContent className={classes.cardContent}>
-						<Typography component='h5' variant='h5'>
-							Live From Space
-						</Typography>
-						<Typography variant='subtitle1' color='textSecondary'>
-							Mac Miller
-						</Typography>
-					</CardContent>
-				</div>
-			</Card>
-			<Card className={classes.cardContainer}>
-				<CardMedia
-					className={classes.imgCover}
-					image='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
-					title='Live from space album cover'
-				/>
-				<div className={classes.cardDetails}>
-					<CardContent className={classes.cardContent}>
-						<Typography component='h5' variant='h5'>
-							Live From Space
-						</Typography>
-						<Typography variant='subtitle1' color='textSecondary'>
-							Mac Miller
-						</Typography>
-					</CardContent>
-				</div>
-			</Card>
-		</React.Fragment>
+		<Card className={classes.cardContainer}>
+			<CardMedia
+				className={classes.imgCover}
+				image='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
+				title='Live from space album cover'
+			/>
+			<div className={classes.cardDetails}>
+				<CardContent className={classes.cardContent}>
+					<Typography component='h5' variant='h5'>
+						Live From Space
+					</Typography>
+					<Typography variant='subtitle1' color='textSecondary'>
+						Mac Miller
+					</Typography>
+				</CardContent>
+			</div>
+		</Card>
 	);
 };
 
