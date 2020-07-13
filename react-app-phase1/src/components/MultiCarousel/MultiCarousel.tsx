@@ -6,7 +6,7 @@ import PinDropIcon from '@material-ui/icons/PinDrop';
 import StarsIcon from '@material-ui/icons/Stars';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import 'react-multi-carousel/lib/styles.css';
-import comingSoonImage from '../../Img/comingSoon.png';
+import comingSoonImage from '../../img/comingSoon.png';
 
 interface MultiCarouselProps {
 	label: string;
