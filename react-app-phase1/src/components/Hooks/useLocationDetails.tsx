@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import zomato from '../api/zomato';
 import _ from 'lodash';
-import { LocationProps } from './Interfaces/interfaces';
+import { LocationProps } from '../../common/Interfaces';
 
 interface LocationDetailsProps {
 	restaurants: object;

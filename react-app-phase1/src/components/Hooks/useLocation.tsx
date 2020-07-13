@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import zomato from '../api/zomato';
-import { LocationProps } from './Interfaces/interfaces';
+import { LocationProps } from '../../common/Interfaces';
 
 const useLocation = (defaultLocation: string | null): [LocationProps, (input: string) => void] => {
 	const [location, setLocation] = useState<LocationProps>({} as LocationProps);

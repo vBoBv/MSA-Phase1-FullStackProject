@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
 import zomato from '../api/zomato';
 import _ from 'lodash';
-import { LocationProps } from './Interfaces/interfaces';
-
-interface CollectionProps {
-	collection: {
-		collection_id: string;
-		title: string;
-	};
-}
+import { LocationProps } from '../../common/Interfaces';
+import { CollectionProps } from '../../common/Interfaces';
 
 const useCollections = (locationData: LocationProps): [CollectionProps[], (input: LocationProps) => void] => {
 	const [collections, setCollections] = useState<CollectionProps[]>([]);

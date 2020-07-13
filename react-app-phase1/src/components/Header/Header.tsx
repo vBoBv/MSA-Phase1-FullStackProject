@@ -20,27 +20,10 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { LocationProps, CollectionProps } from '../../common/Interfaces';
 
 interface ElevationScrollProps {
 	children: React.ReactElement;
-}
-
-interface LocationProps {
-	entity_type: string;
-	entity_id: string;
-	city_id?: string;
-	city_name?: string;
-	country_id?: string;
-	country_name?: string;
-	latitude?: string;
-	longitude?: string;
-}
-
-interface CollectionProps {
-	collection: {
-		collection_id: string;
-		title: string;
-	};
 }
 
 interface HeaderProps {

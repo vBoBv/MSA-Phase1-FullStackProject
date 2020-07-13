@@ -1,15 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import zomato from '../api/zomato';
-import { RestaurantProps } from './Interfaces/interfaces';
-import { LocationProps } from './Interfaces/interfaces';
+import { RestaurantProps, LocationProps, CollectionProps } from '../../common/Interfaces';
 import _ from 'lodash';
-
-interface CollectionProps {
-	collection: {
-		collection_id: string;
-		title?: string;
-	};
-}
 
 const useRestaurant = (
 	defaultRestaurantName: string | null,
