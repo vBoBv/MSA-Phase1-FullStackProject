@@ -3,27 +3,10 @@ import MutliCarousel from '../MultiCarousel/MultiCarousel';
 import useLocationDetails from '../Hooks/useLocationDetails';
 import useCollections from '../Hooks/useCollections';
 import useRestaurant from '../Hooks/useRestaurant';
+import { LocationProps, CollectionProps } from '../../common/Interfaces';
 
 interface LandingPageProps {
 	location: LocationProps;
-}
-
-interface CollectionProps {
-	collection: {
-		collection_id: string;
-		title: string;
-	};
-}
-
-interface LocationProps {
-	entity_type: string;
-	entity_id: string;
-	city_id?: string;
-	city_name?: string;
-	country_id?: string;
-	country_name?: string;
-	latitude?: string;
-	longitude?: string;
 }
 
 const LandingPage = ({ location }: LandingPageProps) => {

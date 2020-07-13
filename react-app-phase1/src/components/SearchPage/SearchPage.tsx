@@ -1,12 +1,9 @@
 import React from 'react';
 import RestaurantList from '../RestaurantList/RestaurantList';
+import { RestaurantProps } from '../../common/Interfaces';
 
 interface SearchPageProps {
 	restaurantData: RestaurantProps[];
-}
-
-interface RestaurantProps {
-	restaurant: { id: string; name: string; location: { address: string }; featured_image: string };
 }
 
 const SearchPage = ({ restaurantData }: SearchPageProps) => {

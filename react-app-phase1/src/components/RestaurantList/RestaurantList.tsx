@@ -1,11 +1,8 @@
 import React from 'react';
 import { Theme, makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { RestaurantProps } from '../../common/Interfaces';
 import comingSoonImage from '../../img/comingSoon.png';
-
-interface RestaurantProps {
-	restaurant: { id: string; name: string; location: { address: string }; featured_image: string };
-}
 
 interface RestaurantListProps {
 	data: RestaurantProps;
