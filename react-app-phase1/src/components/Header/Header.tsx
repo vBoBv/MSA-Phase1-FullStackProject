@@ -92,9 +92,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 	headerMargin: {
 		...theme.mixins.toolbar,
 		marginBottom: '1em'
-		// [theme.breakpoints.down('md')]: {
-		// 	marginBottom: '0.5em'
-		// }
 	}
 }));
 
@@ -118,17 +115,7 @@ const Header = ({ setUserInput, setLocation, location }: HeaderProps): JSX.Eleme
 		};
 	}, [restaurant]);
 
-	// const handleSubmit = useCallback(() => {
-	// 	let UserInput: UserInput = {
-	// 		SearchQuery: debouncedRestaurant,
-	// 		SelectQuery: city
-	// 	};
-	// 	SetUserInput(UserInput);
-	// }, [SetUserInput, debouncedRestaurant, city]);
-
 	useEffect(() => {
-		// setUserInput(debouncedRestaurant, { entity_id: '70', entity_type: 'city' }, null);
-
 		setUserInput(debouncedRestaurant, location, null);
 	}, [debouncedRestaurant, location, setUserInput]);
 
