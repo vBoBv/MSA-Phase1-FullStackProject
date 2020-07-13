@@ -73,7 +73,6 @@ const responsive = {
 
 const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 	const classes = useStyles();
-	// console.log(data);
 
 	const renderCard = data.map((item) => {
 		return (

@@ -10,5 +10,8 @@ export interface LocationProps {
 }
 
 export interface RestaurantProps {
-	restaurant: object;
+	// restaurant: object;
+	// restaurant: { id: string };
+
+	restaurant: { id: string; name: string; location: { address: string }; featured_image: string };
 }

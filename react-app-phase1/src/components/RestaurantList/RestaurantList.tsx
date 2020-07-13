@@ -1,6 +1,15 @@
 import React from 'react';
 import { Theme, makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
+import comingSoonImage from '../../Img/comingSoon.png';
+
+interface RestaurantProps {
+	restaurant: { id: string; name: string; location: { address: string }; featured_image: string };
+}
+
+interface RestaurantListProps {
+	data: RestaurantProps;
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
 	cardContainer: {
@@ -27,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		width: 200,
 		height: 190,
 		[theme.breakpoints.down('sm')]: {
-			width: 180,
+			minWidth: '40%',
 			height: 150
 		},
 		[theme.breakpoints.down('xs')]: {
@@ -37,23 +46,24 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-const RestaurantList = () => {
+const RestaurantList = ({ data }: RestaurantListProps) => {
 	const classes = useStyles();
+	console.log(data, 'data');
 
 	return (
 		<Card className={classes.cardContainer}>
 			<CardMedia
 				className={classes.imgCover}
-				image='https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg'
-				title='Live from space album cover'
+				image={data.restaurant.featured_image !== '' ? data.restaurant.featured_image : comingSoonImage}
+				title={data.restaurant.name}
 			/>
 			<div className={classes.cardDetails}>
 				<CardContent className={classes.cardContent}>
 					<Typography component='h5' variant='h5'>
-						Live From Space
+						{data.restaurant.name}
 					</Typography>
 					<Typography variant='subtitle1' color='textSecondary'>
-						Mac Miller
+						{data.restaurant.location.address}
 					</Typography>
 				</CardContent>
 			</div>

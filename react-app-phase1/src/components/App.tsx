@@ -3,7 +3,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Header from './Header/Header';
 import theme from './Theme/Theme';
 import LandingPage from './LandingPage/LandingPage';
-// import RestaurantList from './RestaurantList/RestaurantList';
+import SearchPage from './SearchPage/SearchPage';
 import useRestaurant from './Hooks/useRestaurant';
 import useLocation from './Hooks/useLocation';
 
@@ -17,7 +17,7 @@ const App = () => {
 		<ThemeProvider theme={theme}>
 			<Header setUserInput={searchRestaurant} setLocation={setLocation} location={location} />
 			<LandingPage location={location} />
-			{/* <RestaurantList /> */}
+			<SearchPage restaurantData={restaurant} />
 		</ThemeProvider>
 	);
 };

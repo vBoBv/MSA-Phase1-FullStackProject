@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import MutliCarousel from '../MultiCarousel/MultiCarousel';
-// import useLocation from '../Hooks/useLocation';
 import useLocationDetails from '../Hooks/useLocationDetails';
 import useCollections from '../Hooks/useCollections';
 import useRestaurant from '../Hooks/useRestaurant';
@@ -29,18 +28,13 @@ interface LocationProps {
 
 const LandingPage = ({ location }: LandingPageProps) => {
 	const [selectedCollection, setSelectedCollection] = useState<CollectionProps>({} as CollectionProps);
-	// const [location] = useLocation('Aukland');
 	const [locationDetails] = useLocationDetails(location);
 	const [collections] = useCollections(location);
 	const [restaurant] = useRestaurant(null, location, selectedCollection);
 
-	console.log(restaurant);
-
 	useEffect(() => {
 		setSelectedCollection(collections[Math.floor(Math.random() * 5)]);
 	}, [collections]);
-
-	// console.log(restaurant);
 
 	const renderScreen = () => {
 		return (
