@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import Header from './Header/Header';
 import theme from './Theme/Theme';
@@ -8,16 +8,29 @@ import useRestaurant from './Hooks/useRestaurant';
 import useLocation from './Hooks/useLocation';
 
 const App = () => {
-	const [location, setLocation] = useLocation('Auckland');
+	const [searchQuery, setSearchQuery] = useState<string | null>('');
+	const [location, searchLocation] = useLocation('Auckland');
 	const [restaurant, searchRestaurant] = useRestaurant(null, location, null);
 
-	// console.log(restaurant);
+	const renderScreen = () => {
+		if (searchQuery === '' || searchQuery === null) {
+			return <LandingPage location={location} />;
+		} else {
+			return <SearchPage restaurantData={restaurant} />;
+		}
+	};
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Header setUserInput={searchRestaurant} setLocation={setLocation} location={location} />
-			<LandingPage location={location} />
-			<SearchPage restaurantData={restaurant} />
+			<Header
+				setUserInput={searchRestaurant}
+				setLocation={searchLocation}
+				setSearchQuery={setSearchQuery}
+				location={location}
+			/>
+			{/* <LandingPage location={location} />
+			<SearchPage restaurantData={restaurant} /> */}
+			{renderScreen()}
 		</ThemeProvider>
 	);
 };

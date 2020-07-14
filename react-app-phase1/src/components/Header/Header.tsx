@@ -29,6 +29,7 @@ interface ElevationScrollProps {
 interface HeaderProps {
 	setUserInput: (restaurantName: string | null, location: LocationProps, collection: CollectionProps | null) => void;
 	setLocation: (input: string) => void;
+	setSearchQuery: React.Dispatch<React.SetStateAction<string | null>>;
 	location: LocationProps;
 }
 
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-const Header = ({ setUserInput, setLocation, location }: HeaderProps): JSX.Element => {
+const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderProps): JSX.Element => {
 	const [restaurant, setRestaurant] = useState<string | null>('');
 	const [debouncedRestaurant, setDebouncedRestaurant] = useState<string | null>('');
 	const [city, setCity] = useState<string>('Auckland');
@@ -104,6 +105,7 @@ const Header = ({ setUserInput, setLocation, location }: HeaderProps): JSX.Eleme
 
 	const handleTextChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
 		setRestaurant(event.target.value as string);
+		setSearchQuery(event.target.value as string);
 	};
 
 	const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
