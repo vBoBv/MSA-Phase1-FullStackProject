@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const RestaurantList = ({ data }: RestaurantListProps) => {
 	const classes = useStyles();
-	// console.log(data, 'data');
 
 	return (
 		<Card className={classes.cardContainer}>

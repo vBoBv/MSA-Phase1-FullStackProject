@@ -127,7 +127,6 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 				{label}
 			</Typography>
 			{data.length === 0 ? <ProgressBar /> : <Carousel responsive={responsive}>{renderCard}</Carousel>}
-			{/* <Carousel responsive={responsive}>{renderCard}</Carousel> */}
 		</div>
 	);
 };

@@ -30,11 +30,6 @@ const LandingPage = ({ location }: LandingPageProps) => {
 	};
 
 	return <div>{locationDetails.length === 0 && restaurant.length === 0 ? <ProgressBar /> : renderScreen()}</div>;
-	// return (
-	// 	<div>
-	// 		<ProgressBar />
-	// 	</div>
-	// );
 };
 
 export default LandingPage;
