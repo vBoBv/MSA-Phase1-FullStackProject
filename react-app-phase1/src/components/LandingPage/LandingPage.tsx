@@ -4,6 +4,7 @@ import useLocationDetails from '../Hooks/useLocationDetails';
 import useCollections from '../Hooks/useCollections';
 import useRestaurant from '../Hooks/useRestaurant';
 import { LocationProps, CollectionProps } from '../../common/Interfaces';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 interface LandingPageProps {
 	location: LocationProps;
@@ -19,7 +20,7 @@ const LandingPage = ({ location }: LandingPageProps) => {
 		setSelectedCollection(collections[Math.floor(Math.random() * 5)]);
 	}, [collections]);
 
-	const renderScreen = () => {
+	const renderScreen = (): JSX.Element => {
 		return (
 			<React.Fragment>
 				<MutliCarousel label='Best Rated' data={locationDetails} />
@@ -28,7 +29,12 @@ const LandingPage = ({ location }: LandingPageProps) => {
 		);
 	};
 
-	return <div>{locationDetails.length === 0 && restaurant.length === 0 ? 'Fetching' : renderScreen()}</div>;
+	return <div>{locationDetails.length === 0 && restaurant.length === 0 ? <ProgressBar /> : renderScreen()}</div>;
+	// return (
+	// 	<div>
+	// 		<ProgressBar />
+	// 	</div>
+	// );
 };
 
 export default LandingPage;

@@ -12,7 +12,7 @@ const App = () => {
 	const [location, searchLocation] = useLocation('Auckland');
 	const [restaurant, searchRestaurant] = useRestaurant(null, location, null);
 
-	const renderScreen = () => {
+	const renderScreen = (): JSX.Element => {
 		if (searchQuery === '' || searchQuery === null) {
 			return <LandingPage location={location} />;
 		} else {
@@ -28,8 +28,6 @@ const App = () => {
 				setSearchQuery={setSearchQuery}
 				location={location}
 			/>
-			{/* <LandingPage location={location} />
-			<SearchPage restaurantData={restaurant} /> */}
 			{renderScreen()}
 		</ThemeProvider>
 	);

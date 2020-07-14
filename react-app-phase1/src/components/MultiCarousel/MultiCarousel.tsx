@@ -7,6 +7,7 @@ import StarsIcon from '@material-ui/icons/Stars';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import 'react-multi-carousel/lib/styles.css';
 import comingSoonImage from '../../img/comingSoon.png';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 interface MultiCarouselProps {
 	label: string;
@@ -125,7 +126,8 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 			<Typography variant='h4' gutterBottom className={classes.heading}>
 				{label}
 			</Typography>
-			<Carousel responsive={responsive}>{renderCard}</Carousel>
+			{data.length === 0 ? <ProgressBar /> : <Carousel responsive={responsive}>{renderCard}</Carousel>}
+			{/* <Carousel responsive={responsive}>{renderCard}</Carousel> */}
 		</div>
 	);
 };
