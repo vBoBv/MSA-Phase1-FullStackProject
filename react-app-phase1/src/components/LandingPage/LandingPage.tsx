@@ -5,6 +5,7 @@ import useCollections from '../Hooks/useCollections';
 import useRestaurant from '../Hooks/useRestaurant';
 import { LocationProps, CollectionProps } from '../../common/Interfaces';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import _ from 'lodash';
 
 interface LandingPageProps {
 	location: LocationProps;
@@ -24,7 +25,9 @@ const LandingPage = ({ location }: LandingPageProps) => {
 		return (
 			<React.Fragment>
 				<MutliCarousel label='Best Rated' data={locationDetails} />
-				<MutliCarousel label={selectedCollection.collection.title} data={restaurant} />
+				{_.isEmpty(selectedCollection) ? null : (
+					<MutliCarousel label={selectedCollection.collection.title} data={restaurant} />
+				)}
 			</React.Fragment>
 		);
 	};
