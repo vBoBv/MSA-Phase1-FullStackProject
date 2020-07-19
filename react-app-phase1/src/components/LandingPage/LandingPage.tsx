@@ -6,6 +6,7 @@ import useRestaurant from '../Hooks/useRestaurant';
 import { LocationProps, CollectionProps } from '../../common/Interfaces';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import _ from 'lodash';
+import Cuisine from '../Cuisine/Cuisine';
 
 interface LandingPageProps {
 	location: LocationProps;
@@ -24,6 +25,7 @@ const LandingPage = ({ location }: LandingPageProps) => {
 	const renderScreen = (): JSX.Element => {
 		return (
 			<React.Fragment>
+				<Cuisine />
 				<MutliCarousel label='Best Rated' data={locationDetails} />
 				{_.isEmpty(selectedCollection) ? null : (
 					<MutliCarousel label={selectedCollection.collection.title} data={restaurant} />
