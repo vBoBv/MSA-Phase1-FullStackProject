@@ -16,6 +16,7 @@ interface MultiCarouselProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
 	heading: {
+		fontFamily: 'Changa, sans-serif',
 		[theme.breakpoints.down('md')]: {
 			fontSize: '2rem'
 		},
@@ -88,11 +89,12 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 							title={item.restaurant.name}
 						/>
 						<CardContent>
-							<Typography gutterBottom variant='h5' component='h2' className={classes.restaurantName}>
+							<Typography gutterBottom noWrap variant='h5' component='h2' className={classes.restaurantName}>
 								{item.restaurant.name}
 							</Typography>
 							<Typography
 								gutterBottom
+								noWrap
 								variant='body2'
 								color='textSecondary'
 								component='p'

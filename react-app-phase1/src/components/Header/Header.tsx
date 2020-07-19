@@ -47,6 +47,8 @@ const ElevationScroll = ({ children }: ElevationScrollProps): JSX.Element => {
 const useStyles = makeStyles((theme: Theme) => ({
 	logo: {
 		margin: 'auto',
+		fontFamily: 'Righteous, cursive',
+		fontSize: '1.5rem',
 		[theme.breakpoints.down('xs')]: {
 			marginLeft: '1rem'
 		}
@@ -59,6 +61,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	filter: {
 		margin: 'auto',
+		fontFamily: 'Righteous, cursive',
+		fontSize: '1rem',
 		[theme.breakpoints.down('xs')]: {
 			marginRight: '1rem'
 		}

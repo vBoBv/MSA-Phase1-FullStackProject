@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 	searchIcon: {
 		fontSize: '5rem',
 		fill: '#A9A9A9'
+	},
+	dataLength: {
+		fontFamily: 'Changa, sans-serif',
+		fontSize: '1rem',
+		color: theme.palette.secondary.main
 	}
 }));
 
@@ -45,7 +50,10 @@ const SearchPage = ({ restaurantData }: SearchPageProps) => {
 		if (restaurantData.length > 0) {
 			return (
 				<div className={classes.resultFound}>
-					<Typography variant='caption'>There are {restaurantData.length} results match your search term.</Typography>
+					<Typography variant='caption'>
+						There are <span className={classes.dataLength}>{restaurantData.length}</span> results match your search
+						term.
+					</Typography>
 				</div>
 			);
 		} else {
