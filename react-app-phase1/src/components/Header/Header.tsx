@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 			marginLeft: '1rem'
 		}
 	},
+	logoText: {
+		color: theme.palette.secondary.main,
+		borderBottom: `3px solid ${theme.palette.secondary.main}`
+	},
 	searchBar: {
 		margin: 'auto',
 		[theme.breakpoints.down('xs')]: {
@@ -140,7 +144,9 @@ const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderP
 			<ElevationScroll>
 				<AppBar>
 					<Toolbar disableGutters>
-						<Typography className={classes.logo}>foodJunkie</Typography>
+						<Typography className={classes.logo}>
+							food<span className={classes.logoText}>Junkie</span>
+						</Typography>
 						{isScreenXSmall ? null : searchBar}
 						<Button startIcon={<FilterListIcon />} className={classes.filter} onClick={handleOpen}>
 							Filter

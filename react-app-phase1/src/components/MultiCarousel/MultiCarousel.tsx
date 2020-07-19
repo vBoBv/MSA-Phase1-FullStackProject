@@ -17,6 +17,9 @@ interface MultiCarouselProps {
 const useStyles = makeStyles((theme: Theme) => ({
 	heading: {
 		fontFamily: 'Changa, sans-serif',
+		marginLeft: '1rem',
+		paddingLeft: '0.5rem',
+		borderLeft: `5px solid ${theme.palette.primary.main}`,
 		[theme.breakpoints.down('md')]: {
 			fontSize: '2rem'
 		},
