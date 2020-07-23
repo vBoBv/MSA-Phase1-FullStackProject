@@ -17,5 +17,19 @@ export interface CollectionProps {
 }
 
 export interface RestaurantProps {
-	restaurant: { id: string; name: string; location: { address: string }; featured_image: string };
+	restaurant: {
+		id: string;
+		name: string;
+		location: {
+			address: string;
+		};
+		featured_image: string;
+	};
+}
+
+export interface CuisineProps {
+	cuisine: {
+		cuisine_id: number;
+		cuisine_name: string;
+	};
 }
