@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from './Header/Header';
 import theme from './Theme/Theme';
 import LandingPage from './LandingPage/LandingPage';
 import SearchPage from './SearchPage/SearchPage';
 import useRestaurant from './Hooks/useRestaurant';
 import useLocation from './Hooks/useLocation';
+import Footer from './Footer/Footer';
 
 const App = () => {
 	const [searchQuery, setSearchQuery] = useState<string | null>('');
@@ -22,6 +24,7 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={theme}>
+			<CssBaseline />
 			<Header
 				setUserInput={searchRestaurant}
 				setLocation={searchLocation}
@@ -29,18 +32,9 @@ const App = () => {
 				location={location}
 			/>
 			{renderScreen()}
+			<Footer />
 		</ThemeProvider>
 	);
 };
-
-// const App = () => {
-// 	const [location, searchLocation] = useLocation('Auckland');
-
-// 	return (
-// 		<ThemeProvider theme={theme}>
-// 			<LandingPage location={location} />
-// 		</ThemeProvider>
-// 	);
-// };
 
 export default App;

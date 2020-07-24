@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const lightGrey = '#eef2f3';
-const softOrange = '#4ca2cd';
+const aquaBlue = '#4ca2cd';
 
 export default createMuiTheme({
 	palette: {
@@ -9,7 +9,7 @@ export default createMuiTheme({
 			main: lightGrey
 		},
 		secondary: {
-			main: softOrange
+			main: aquaBlue
 		}
 	}
 });
