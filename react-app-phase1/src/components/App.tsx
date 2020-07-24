@@ -7,28 +7,38 @@ import SearchPage from './SearchPage/SearchPage';
 import useRestaurant from './Hooks/useRestaurant';
 import useLocation from './Hooks/useLocation';
 
-const App = () => {
-	const [searchQuery, setSearchQuery] = useState<string | null>('');
-	const [location, searchLocation] = useLocation('Auckland');
-	const [restaurant, searchRestaurant] = useRestaurant(null, location, null);
+// const App = () => {
+// 	const [searchQuery, setSearchQuery] = useState<string | null>('');
+// 	const [location, searchLocation] = useLocation('Auckland');
+// 	const [restaurant, searchRestaurant] = useRestaurant(null, location, null);
 
-	const renderScreen = (): JSX.Element => {
-		if (searchQuery === '' || searchQuery === null) {
-			return <LandingPage location={location} />;
-		} else {
-			return <SearchPage restaurantData={restaurant} />;
-		}
-	};
+// 	const renderScreen = (): JSX.Element => {
+// 		if (searchQuery === '' || searchQuery === null) {
+// 			return <LandingPage location={location} />;
+// 		} else {
+// 			return <SearchPage restaurantData={restaurant} />;
+// 		}
+// 	};
+
+// 	return (
+// 		<ThemeProvider theme={theme}>
+// 			<Header
+// 				setUserInput={searchRestaurant}
+// 				setLocation={searchLocation}
+// 				setSearchQuery={setSearchQuery}
+// 				location={location}
+// 			/>
+// 			{renderScreen()}
+// 		</ThemeProvider>
+// 	);
+// };
+
+const App = () => {
+	const [location, searchLocation] = useLocation('Auckland');
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Header
-				setUserInput={searchRestaurant}
-				setLocation={searchLocation}
-				setSearchQuery={setSearchQuery}
-				location={location}
-			/>
-			{renderScreen()}
+			<LandingPage location={location} />
 		</ThemeProvider>
 	);
 };

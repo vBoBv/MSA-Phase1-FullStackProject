@@ -17,41 +17,16 @@ interface LandingPageProps {
 
 const LandingPage = ({ location }: LandingPageProps) => {
 	const [selectedCollection, setSelectedCollection] = useState<CollectionProps>({} as CollectionProps);
+	const [topCuisine, setTopCuisine] = useState<CuisineProps[]>([]);
+
 	const [locationDetails] = useLocationDetails(location);
 	const [collections] = useCollections(location);
 	const [restaurant] = useRestaurant(null, location, selectedCollection);
 	const [cuisine] = useCuisine(location);
-
-	const [topCuisine, setTopCuisine] = useState<CuisineProps[]>([]);
-
-	//topCuisines restaurant make everything render forever
-	// const topCuisines = cuisine.filter(
-	// 	({ cuisine }) =>
-	// 		cuisine.cuisine_name === 'Asian' ||
-	// 		cuisine.cuisine_name === 'American' ||
-	// 		cuisine.cuisine_name === 'European' ||
-	// 		cuisine.cuisine_name === 'Japanese' ||
-	// 		cuisine.cuisine_name === 'Indian'
-	// );
-	// console.log(cuisine);
-
 	const [cuisineRestaurant] = useCuisineRestaurant(topCuisine, location);
-	// const [cuisineRestaurant] = useCuisineRestaurant(topCuisines, location);
-	// console.log(cuisineRestaurant);
 
 	useEffect(() => {
 		setSelectedCollection(collections[Math.floor(Math.random() * 5)]);
-		// setTopCuisine(
-		// 	cuisine.filter(
-		// 		({ cuisine }) =>
-		// 			cuisine.cuisine_name === 'Asian' ||
-		// 			cuisine.cuisine_name === 'American' ||
-		// 			cuisine.cuisine_name === 'European' ||
-		// 			cuisine.cuisine_name === 'Japanese' ||
-		// 			cuisine.cuisine_name === 'Indian'
-		// 	)
-		// );
-		// }, [collections, cuisine]);
 	}, [collections]);
 
 	useEffect(() => {
@@ -67,8 +42,6 @@ const LandingPage = ({ location }: LandingPageProps) => {
 		);
 	}, [cuisine]);
 
-	// console.log(topCuisine);
-
 	const renderScreen = (): JSX.Element => {
 		return (
 			<React.Fragment>
@@ -82,7 +55,35 @@ const LandingPage = ({ location }: LandingPageProps) => {
 	};
 
 	return <div>{locationDetails.length === 0 && restaurant.length === 0 ? <ProgressBar /> : renderScreen()}</div>;
-	// return <div>hi</div>;
 };
+
+// const LandingPage = ({ location }: LandingPageProps) => {
+// 	const [topCuisine, setTopCuisine] = useState<CuisineProps[]>([]);
+// 	const [cuisine] = useCuisine(location);
+// 	const [cuisineRestaurant] = useCuisineRestaurant(topCuisine, location);
+
+// 	useEffect(() => {
+// 		setTopCuisine(
+// 			cuisine.filter(
+// 				({ cuisine }) =>
+// 					cuisine.cuisine_name === 'Asian' ||
+// 					cuisine.cuisine_name === 'American' ||
+// 					cuisine.cuisine_name === 'European' ||
+// 					cuisine.cuisine_name === 'Japanese' ||
+// 					cuisine.cuisine_name === 'Indian'
+// 			)
+// 		);
+// 	}, [cuisine]);
+
+// 	const renderScreen = (): JSX.Element => {
+// 		return (
+// 			<React.Fragment>
+// 				<Cuisine cuisines={cuisineRestaurant} categories={topCuisine} />
+// 			</React.Fragment>
+// 		);
+// 	};
+
+// 	return <div>{renderScreen()}</div>;
+// };
 
 export default LandingPage;

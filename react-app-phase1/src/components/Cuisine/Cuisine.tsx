@@ -1,13 +1,14 @@
-import React from 'react';
-import { Card, CardActionArea, CardMedia, CardContent, Typography, Collapse, Paper } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Card, CardActionArea, CardMedia, CardContent, Typography, Collapse, Grid } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { CuisineProps, RestaurantProps } from '../../common/Interfaces';
+import { CuisineProps, RestaurantProps, LocationProps } from '../../common/Interfaces';
 import american from '../../img/american.jpg';
 import asian from '../../img/asian.jpg';
 import european from '../../img/european.jpg';
 import indian from '../../img/indian.jpg';
 import japanese from '../../img/japanese.jpg';
 import comingSoonImage from '../../img/comingSoon.png';
+import MutliCarousel from '../MultiCarousel/MultiCarousel';
 
 interface CuisinePageProps {
 	cuisines: RestaurantProps[][];
@@ -15,23 +16,11 @@ interface CuisinePageProps {
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		maxWidth: 345
-	},
-	container: {
-		display: 'flex'
-	},
-	paper: {
-		margin: theme.spacing(1)
-	},
-	svg: {
-		width: 100,
-		height: 100
-	},
-	polygon: {
-		fill: theme.palette.common.white,
-		stroke: theme.palette.divider,
-		strokeWidth: 1
+	cardContainer: {
+		maxWidth: 400,
+		[theme.breakpoints.down('sm')]: {
+			maxWidth: 420
+		}
 	},
 	cuisineContainer: {
 		display: 'flex',
@@ -46,11 +35,31 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Cuisine = ({ cuisines, categories }: CuisinePageProps) => {
 	const classes = useStyles();
-	const [checked, setChecked] = React.useState(false);
-	cuisines.map((item) => console.log(item[0].restaurant.name));
+	const [checked, setChecked] = useState(false);
+	const [selectedCuisineName, setSelectedCuisineName] = useState(
+		'American' || 'Asian' || 'European' || 'Indian' || 'Japan'
+	);
+	const [selectedCuisine, setSelectedCuisine] = useState<RestaurantProps[]>([]);
 
-	const handleCheck = () => {
-		setChecked((prev) => !prev);
+	const handleCheck = (cuisineName: string) => {
+		for (let i = 0; i < cuisines.length; i++) {
+			if (cuisines[i][cuisines.length].restaurant.cuisines?.includes(cuisineName)) {
+				setSelectedCuisine(cuisines[i]);
+			}
+		}
+
+		if (cuisineName === selectedCuisineName) {
+			setTimeout(() => {
+				setChecked((prev) => !prev);
+			}, 600);
+		} else if (cuisineName !== selectedCuisineName && !checked) {
+			setTimeout(() => {
+				setChecked((prev) => !prev);
+				setSelectedCuisineName(cuisineName);
+			}, 600);
+		} else {
+			setSelectedCuisineName(cuisineName);
+		}
 	};
 
 	const renderDefaultPicture = (num: number) => {
@@ -72,8 +81,8 @@ const Cuisine = ({ cuisines, categories }: CuisinePageProps) => {
 
 	const renderCuisineCategory = categories.map((category, index) => {
 		return (
-			<React.Fragment key={category.cuisine.cuisine_id}>
-				<Card className={classes.root} onClick={handleCheck}>
+			<Grid item md key={category.cuisine.cuisine_id}>
+				<Card className={classes.cardContainer} onClick={() => handleCheck(category.cuisine.cuisine_name)}>
 					<CardActionArea>
 						<CardMedia
 							component='img'
@@ -89,22 +98,24 @@ const Cuisine = ({ cuisines, categories }: CuisinePageProps) => {
 						</CardContent>
 					</CardActionArea>
 				</Card>
-			</React.Fragment>
+			</Grid>
 		);
 	});
 
+	const renderSelectedCuisine = () => {
+		return (
+			<Collapse in={checked} timeout={500}>
+				<MutliCarousel label='Here is our recommendations...' data={selectedCuisine} />
+			</Collapse>
+		);
+	};
+
 	return (
 		<div>
-			<div className={classes.cuisineContainer}>{renderCuisineCategory}</div>
-			<div className={classes.container}>
-				<Collapse in={checked}>
-					<Paper elevation={4} className={classes.paper}>
-						<svg className={classes.svg}>
-							<polygon points='0,100 50,00, 100,100' className={classes.polygon} />
-						</svg>
-					</Paper>
-				</Collapse>
-			</div>
+			<Grid container className={classes.cuisineContainer}>
+				{renderCuisineCategory}
+			</Grid>
+			{renderSelectedCuisine()}
 		</div>
 	);
 };

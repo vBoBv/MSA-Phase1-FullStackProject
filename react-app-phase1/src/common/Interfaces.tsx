@@ -24,6 +24,7 @@ export interface RestaurantProps {
 			address: string;
 		};
 		featured_image: string;
+		cuisines?: string;
 	};
 }
 
