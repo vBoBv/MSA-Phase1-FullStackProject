@@ -21,10 +21,16 @@ export interface RestaurantProps {
 		id: string;
 		name: string;
 		location: {
-			address: string;
+			address?: string;
+			locality_verbose?: string;
 		};
 		featured_image: string;
 		cuisines?: string;
+		phone_numbers: string;
+		user_rating: {
+			aggregate_rating: string;
+		};
+		average_cost_for_two: string;
 	};
 }
 

@@ -83,13 +83,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	headerMargin: {
 		...theme.mixins.toolbar
-		// marginBottom: '1em'
 	}
 }));
 
 const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderProps): JSX.Element => {
 	const [restaurant, setRestaurant] = useState<string | null>('');
 	const [debouncedRestaurant, setDebouncedRestaurant] = useState<string | null>('');
+	const [searchValue, setSearchValue] = useState<string>('');
 	const [city, setCity] = useState<string>('Auckland');
 	const [open, setOpen] = useState<boolean>(false);
 
@@ -112,6 +112,7 @@ const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderP
 	}, [debouncedRestaurant, location, setUserInput]);
 
 	const handleTextChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
+		setSearchValue(event.target.value as string);
 		setRestaurant(event.target.value as string);
 		setSearchQuery(event.target.value as string);
 	};
@@ -119,6 +120,11 @@ const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderP
 	const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
 		setCity(event.target.value as string);
 		setLocation(event.target.value as string);
+	};
+
+	const handleSearchQuery = (): void => {
+		setSearchQuery('');
+		setSearchValue('');
 	};
 
 	const handleClose = (): void => {
@@ -136,6 +142,7 @@ const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderP
 			color='secondary'
 			className={classes.searchBar}
 			onChange={handleTextChange}
+			value={searchValue}
 		/>
 	);
 
@@ -144,7 +151,7 @@ const Header = ({ setUserInput, setLocation, setSearchQuery, location }: HeaderP
 			<ElevationScroll>
 				<AppBar>
 					<Toolbar disableGutters>
-						<Typography className={classes.logo}>
+						<Typography className={classes.logo} onClick={handleSearchQuery}>
 							food<span className={classes.logoText}>Junkie</span>
 						</Typography>
 						{isScreenXSmall ? null : searchBar}
