@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const RestaurantList = ({ data }: RestaurantListProps) => {
 	const classes = useStyles();
-	console.log(data);
+
 	return (
 		<Card className={classes.cardContainer}>
 			<CardMedia

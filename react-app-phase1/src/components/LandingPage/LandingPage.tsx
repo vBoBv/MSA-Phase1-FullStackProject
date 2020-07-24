@@ -57,34 +57,4 @@ const LandingPage = ({ location }: LandingPageProps) => {
 	return <div>{locationDetails.length === 0 && restaurant.length === 0 ? <ProgressBar /> : renderScreen()}</div>;
 };
 
-// const LandingPage = ({ location }: LandingPageProps) => {
-// 	// const [topCuisine, setTopCuisine] = useState<CuisineProps[]>([]);
-// 	// const [cuisine] = useCuisine(location);
-// 	// const [cuisineRestaurant] = useCuisineRestaurant(topCuisine, location);
-
-// 	// useEffect(() => {
-// 	// 	setTopCuisine(
-// 	// 		cuisine.filter(
-// 	// 			({ cuisine }) =>
-// 	// 				cuisine.cuisine_name === 'Asian' ||
-// 	// 				cuisine.cuisine_name === 'American' ||
-// 	// 				cuisine.cuisine_name === 'European' ||
-// 	// 				cuisine.cuisine_name === 'Japanese' ||
-// 	// 				cuisine.cuisine_name === 'Indian'
-// 	// 		)
-// 	// 	);
-// 	// }, [cuisine]);
-
-// 	const renderScreen = (): JSX.Element => {
-// 		return (
-// 			<React.Fragment>
-// 				{/* <Cuisine cuisines={cuisineRestaurant} categories={topCuisine} /> */}
-// 				<Cuisine cuisines={null} categories={null} />
-// 			</React.Fragment>
-// 		);
-// 	};
-
-// 	return <div>{renderScreen()}</div>;
-// };
-
 export default LandingPage;
