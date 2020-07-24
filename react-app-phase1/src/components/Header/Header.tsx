@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 		fontSize: '1.5rem',
 		[theme.breakpoints.down('xs')]: {
 			marginLeft: '1rem'
-		}
+		},
+		cursor: 'pointer'
 	},
 	logoText: {
 		color: theme.palette.secondary.main,
