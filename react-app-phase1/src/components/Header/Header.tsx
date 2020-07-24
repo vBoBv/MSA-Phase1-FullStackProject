@@ -82,8 +82,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 		minWidth: 120
 	},
 	headerMargin: {
-		...theme.mixins.toolbar,
-		marginBottom: '1em'
+		...theme.mixins.toolbar
+		// marginBottom: '1em'
 	}
 }));
 

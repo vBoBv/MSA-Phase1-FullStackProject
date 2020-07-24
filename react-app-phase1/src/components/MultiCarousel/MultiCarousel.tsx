@@ -12,6 +12,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 interface MultiCarouselProps {
 	label: string;
 	data: any[];
+	style?: string;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -76,7 +77,7 @@ const responsive = {
 	}
 };
 
-const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
+const MutliCarousel = ({ label, data, style }: MultiCarouselProps) => {
 	const classes = useStyles();
 
 	const renderCard = data.map((item) => {
@@ -131,7 +132,13 @@ const MutliCarousel = ({ label, data }: MultiCarouselProps) => {
 			<Typography variant='h4' gutterBottom className={classes.heading}>
 				{label}
 			</Typography>
-			{data.length === 0 ? <ProgressBar /> : <Carousel responsive={responsive}>{renderCard}</Carousel>}
+			{data.length === 0 ? (
+				<ProgressBar />
+			) : (
+				<Carousel responsive={responsive} className={style}>
+					{renderCard}
+				</Carousel>
+			)}
 		</div>
 	);
 };

@@ -8,10 +8,19 @@ const useStyles = makeStyles((theme: Theme) => ({
 		width: '100%',
 		'& > * + *': {
 			marginTop: theme.spacing(2)
-		}
+		},
+		marginTop: '1rem'
 	},
 	loadingText: {
-		textAlign: 'center'
+		textAlign: 'center',
+		fontFamily: 'Righteous, cursive',
+		fontSize: '2rem',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '1.7rem'
+		},
+		[theme.breakpoints.down('xs')]: {
+			fontSize: '1.4rem'
+		}
 	}
 }));
 
