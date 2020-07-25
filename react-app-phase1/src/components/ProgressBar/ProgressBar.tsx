@@ -30,7 +30,7 @@ const LinearIndeterminate = () => {
 	return (
 		<div className={classes.progressBarContainer}>
 			<Typography variant='h5' className={classes.loadingText}>
-				Loading
+				Fetching Data
 			</Typography>
 			<LinearProgress color='secondary' />
 		</div>
