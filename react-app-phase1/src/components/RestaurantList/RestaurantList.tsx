@@ -35,10 +35,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	imgCover: {
 		width: 200,
-		height: 190,
+		height: 'inherit',
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '40%',
-			height: 150
+			height: 'inherit'
 		},
 		[theme.breakpoints.down('xs')]: {
 			width: '100%',

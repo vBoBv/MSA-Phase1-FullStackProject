@@ -129,10 +129,10 @@ const Cuisine = ({ cuisines, categories }: CuisinePageProps) => {
 					<CardActionArea>
 						<CardMedia
 							component='img'
-							alt='Contemplative Reptile'
+							alt={category.cuisine.cuisine_name}
 							height='140'
 							image={renderDefaultPicture(index)}
-							title='Contemplative Reptile'
+							title={category.cuisine.cuisine_name}
 						/>
 						<CardContent className={classes.cardContent}>
 							<Typography variant='h5' component='h2' align='center'>
