@@ -21,7 +21,7 @@ const Footer = () => {
 	return (
 		<div className={classes.footer}>
 			<Typography className={classes.footerHeading}>Microsoft Student Accelarator 2020 / Phase 1</Typography>
-			<Typography className={classes.footerHeading}>&copy; All right reserved By Ponhvath Vann</Typography>
+			<Typography className={classes.footerHeading}>&copy; All Right Reserved By Ponhvath Vann</Typography>
 		</div>
 	);
 };
