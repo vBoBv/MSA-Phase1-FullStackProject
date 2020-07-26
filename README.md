@@ -1,6 +1,5 @@
 * Front-End: https://foodjunkie.azurewebsites.net/
-* Back-End: https://aspdotnet-ponhvath.azurewebsites.net/index.html
-
+* Back-End: https://aspdotnet-ponhvath.azurewebsites.net/
 # MSA-2020 - Front-End & Azure DevOps Project
 
 - Front-End Repo - [React App](https://github.com/vBoBv/MSA-Phase1-FullStackProject/tree/master/react-app-phase1)
@@ -9,7 +8,7 @@
 
 ## Azure-Pipeline
 
-I defined the pipeline using YAML file as instructed in the tutorial documentation. Whenever, a push is being committed to master branch or develop branch, the pipline will be triggered and ran. Furthermore, I specified a path to exclude the README.md so that the pipeline will not kick off if there are any changes to this file.
+I defined the pipeline using YAML file as instructed in the tutorial documentation. Whenever, a push is being committed to master branch or develop branch, the pipeline will be triggered. Furthermore, I specified a path to exclude the README.md so that the pipeline will not start if there are any changes to this file.
 
 ```tsx
 trigger:
@@ -39,7 +38,7 @@ steps:
   displayName: 'Install Node.js'
 ```
 
-After Node installation process is completed, I created a script to extract my Zomato API Key from Azure Key Vault. This is done by specifying my `azureSubscription` and `KeyVaultName` in this case it is the resource name that I set inside Azure Key Vault. I utilized [Azure Key Vault task](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-key-vault?view=azure-devops) and [Use secrets from Azure Key Vault in Azure Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops) as references for this step. This task will download my api key as a variable called `zomatoApiKey`. Later on, React app is being built along with the creation of `.env.production` file which contains the api key as shown below:
+After Node installation process is completed, I created a script to extract my Zomato API Key from Azure Key Vault. This is done by specifying my `azureSubscription` and `KeyVaultName` in this case it is the resource name that I set inside Azure Key Vault. I utilised [Azure Key Vault task](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-key-vault?view=azure-devops) and [Use secrets from Azure Key Vault in Azure Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops) as references for this step. This task will download my API key as a variable called `zomatoApiKey`. Later on, React app is being built along with the creation of `.env.production` file which contains the API key as shown below:
 
 ```tsx
 - task: AzureKeyVault@1
@@ -134,7 +133,7 @@ steps:
 ## Continuous Integration and Continuous Deployment
 
 ![ciAndCd](devOpsImgs/ciAndCd.PNG)
-The lastest artifact that is published by the pipeline will be used to delpoy our web app to the Azure App Service. This can be done by enabling the continuous deployment feature. Note that, this CD feature is only enabled for the master branch. Any other commits that are being pushed to GitHub will only trigger the pipeline to create an artifact, however it will not deploy the app to the Azure App Service except commits that are being pushed to the master branch.
+The latest artifact that is published by the pipeline will be used to deploy the web app to the Azure App Service. This can be done by enabling the continuous deployment feature. Note that, this CD feature is only enabled for the master branch. Any other commits that are being pushed to GitHub will only trigger the pipeline to create an artifact, however it will not deploy the app to the Azure App Service except commits that are being pushed to the master branch.
 
 ## Microsoft Learn Module
 
