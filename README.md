@@ -1,5 +1,5 @@
-Front-End: https://foodjunkie.azurewebsites.net/
-Back-End: https://aspdotnet-ponhvath.azurewebsites.net/index.html
+* Front-End: https://foodjunkie.azurewebsites.net/
+* Back-End: https://aspdotnet-ponhvath.azurewebsites.net/index.html
 
 # MSA-2020 - Front-End & Azure DevOps Project
 
