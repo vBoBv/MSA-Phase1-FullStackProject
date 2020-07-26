@@ -1,5 +1,5 @@
 Front-End: https://foodjunkie.azurewebsites.net/
-Bacn-End: https://aspdotnet-ponhvath.azurewebsites.net/index.html
+Back-End: https://aspdotnet-ponhvath.azurewebsites.net/index.html
 
 # MSA-2020 - Front-End & Azure DevOps Project
 
@@ -12,8 +12,14 @@ Bacn-End: https://aspdotnet-ponhvath.azurewebsites.net/index.html
 I defined the pipeline using YAML file as instructed in the tutorial documentation. Whenever, a push is being committed to master branch or develop branch, the pipline will be triggered and ran. Furthermore, I specified a path to exclude the README.md so that the pipeline will not kick off if there are any changes to this file.
 
 ```tsx
-trigger: branches: include: -master - develop;
-paths: exclude: -README.md;
+trigger:
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    exclude:
+      - README.md
 ```
 
 After that, I created a variable called `rootDir` which contains a string for my react-app directory name `react-app-phase1`. The `buildDir` variable is created in order to act as a directory to store my react-app application. After setting up the file name and directory, Node will be installed with a version 10.x
@@ -127,7 +133,7 @@ steps:
 
 ## Continuous Integration and Continuous Deployment
 
-![ciAndCd](ciAndCd.PNG)
+![ciAndCd](devOpsImgs/ciAndCd.PNG)
 The lastest artifact that is published by the pipeline will be used to delpoy our web app to the Azure App Service. This can be done by enabling the continuous deployment feature. Note that, this CD feature is only enabled for the master branch. Any other commits that are being pushed to GitHub will only trigger the pipeline to create an artifact, however it will not deploy the app to the Azure App Service except commits that are being pushed to the master branch.
 
 ## Microsoft Learn Module
