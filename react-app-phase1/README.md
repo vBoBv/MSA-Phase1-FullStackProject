@@ -19,7 +19,7 @@ Project Website: https://foodjunkie.azurewebsites.net/
 ### Running the project locally
 
 1. Download or clone the project
-2. Generate your own Zomato's API Key via
+2. Generate your own Zomato's API Key via [Zomato Developer](https://developers.zomato.com/api)
 3. Create `.env.development` and `.env.production` (optional) inside the root folder `react-app-phase1`
 4. Inside .env.development and .env.production:
 
